@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form} from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form, Image} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import { FacebookLoginButton } from "react-social-login-buttons";
 
@@ -17,6 +17,11 @@ export default function Login(props) {
 
   return (
     <Container>
+      <Row className="justify-content-center my-5">
+        <Column style={{textAlign: "center"}}>
+          <Image src={process.env.PUBLIC_URL + '/Logo.png'}></Image>
+        </Column>
+      </Row>
       <Row className="justify-content-center">
         <Column xs='10' s='10' md='10' lg='4' xl='4'>
           <Paper elevation={10}>
@@ -47,9 +52,7 @@ export default function Login(props) {
       </Row>
       <Row className="justify-content-center mt-2">
         <Column xs='10' s='10' md='10' lg='4' xl='4'>
-          <FacebookLoginButton align="center" style={{width: '100%', margin: '0px'}}>
-            Prisijungti su Facebook
-          </FacebookLoginButton>
+          <FacebookLoginButton align="center" style={{width: '100%', margin: '0px'}}/>
         </Column>
       </Row>
     </Container>
