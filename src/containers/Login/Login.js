@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form, Image} from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
-import { FacebookLoginButton, LinkedInLoginButton } from "react-social-login-buttons";
+import { FacebookLoginButton } from "react-social-login-buttons";
 import axios from "axios";
 const queryString = require('query-string');
 
@@ -21,10 +21,6 @@ export default function Login(props) {
     }).then(res => {
       console.log(res.data);
     })
-  }
-
-  function handleFacebook() {
-    axios.get("https://www.facebook.com/v5.0/dialog/oauth?client_id=755621898232417&redirect_uri=https://localhost:44318/api/users/facebook&&scope=email");
   }
 
   useEffect(() => {
@@ -74,7 +70,7 @@ export default function Login(props) {
       </Row>
       <Row className="justify-content-center mt-2">
         <Column xs='10' s='10' md='10' lg='4' xl='4'>
-          <a rel="noopener noreferrer" href="https://www.facebook.com/v5.0/dialog/oauth?client_id=755621898232417&redirect_uri=https://localhost:3000/login&&scope=email" target="_blank"><FacebookLoginButton align="center" style={{width: '100%', margin: '0px'}}/></a>
+          <a rel="noopener noreferrer" href="https://www.facebook.com/v5.0/dialog/oauth?client_id=755621898232417&redirect_uri=http://localhost:3000/login&&scope=email" target="_blank"><FacebookLoginButton align="center" style={{width: '100%', margin: '0px'}}/></a>
         </Column>
       </Row>
     </Container>
