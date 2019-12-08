@@ -5,10 +5,12 @@ import {
 } from "react-router-dom";
 
 import Login from "./containers/Login/Login";
+import Register from "./containers/Register/Register";
 
 export default function App() {
   return (
-    <Router>
+    <div>
+      <Router>
       <link
         rel="stylesheet"
         href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -30,8 +32,10 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Route path={"/login"} component={Login} />
+        <Route path={"/register"} component={Register} />
         <Route path={"/"} />
       </div>
-    </Router>
+      </Router>
+    </div>
   );
 }

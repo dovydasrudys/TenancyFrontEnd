@@ -3,6 +3,7 @@ import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Colum
 import Paper from "@material-ui/core/Paper";
 import { FacebookLoginButton } from "react-social-login-buttons";
 import axios from "axios";
+import { Colors } from "../../Colors";
 const queryString = require('query-string');
 
 export default function Login(props) {
@@ -42,7 +43,7 @@ export default function Login(props) {
       </Row>
       <Row className="justify-content-center">
         <Column xs='10' s='10' md='10' lg='4' xl='4'>
-          <Paper elevation={10}>
+          <Paper elevation={10} style={{backgroundColor: Colors.first}}>
             <Form className="p-5" onSubmit={handleSubmit}>
               <FormGroup controlId="email">
                 <FormLabel>Email</FormLabel>
@@ -51,6 +52,7 @@ export default function Login(props) {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
+                  style={{backgroundColor: Colors.second}}
                 />
               </FormGroup>
               <FormGroup controlId="password">
@@ -59,10 +61,14 @@ export default function Login(props) {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   type="password"
+                  style={{backgroundColor: Colors.second}}
                 />
               </FormGroup>
               <Button disabled={!validateForm()} type="submit">
                 Login
+              </Button>
+              <Button variant="secondary" style={{float: "right"}}>
+                Register here
               </Button>
             </Form>
           </Paper>
