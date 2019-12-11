@@ -7,6 +7,8 @@ import {
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Register";
 
+import Test from "./containers/Test";
+
 export default function App() {
   return (
     <div>
@@ -31,6 +33,7 @@ export default function App() {
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
+        <Route path={"/test"} component={Test}/>
         <Route path={"/login"} component={Login} />
         <Route path={"/register"} component={Register} />
         <Route path={"/"} />
