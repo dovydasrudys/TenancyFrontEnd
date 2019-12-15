@@ -3,8 +3,8 @@ import { Colors } from "../Colors";
 
 import { Container, Row, Col } from "react-bootstrap";
 
-import AdvertsBoard from "../components/AdvertsBoard";
 import AdsBoard from "../components/AdsBoard";
+import RealEstateCreate from "../containers/RealEstate/RealEstateCreate";
 
 const adverts = [
     {
@@ -71,11 +71,15 @@ export default function Test(props) {
       <Row>
         <Col lg={6}>
             <AdsBoard
+                title="Advertisements"
                 adverts= {adverts}
                 color={Colors.third}
-                onRowClick={(id) => console.log(id)}
+                onAdClick={(id) => console.log(id)}
             >
             </AdsBoard>
+        </Col>
+        <Col lg={6}>
+            <RealEstateCreate></RealEstateCreate>
         </Col>
       </Row>
     </Container>

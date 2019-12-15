@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form, Image, Alert } from "react-bootstrap";
+import React, { useState } from "react";
+import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form, Image } from "react-bootstrap";
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import Paper from "@material-ui/core/Paper";
@@ -16,10 +16,6 @@ export default function Login(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const errorOpen = Boolean(anchorEl);
-
-  function resetError() {
-    setError("");
-  }
 
   function validateForm() {
     return email.length > 0
