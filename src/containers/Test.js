@@ -5,6 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 
 import AdsBoard from "../components/AdsBoard";
 import RealEstateCreate from "../containers/RealEstate/RealEstateCreate";
+import PaymentsTable from "../components/PaymentsTable";
 
 const adverts = [
     {
@@ -80,6 +81,9 @@ export default function Test(props) {
         </Col>
         <Col lg={6}>
             <RealEstateCreate></RealEstateCreate>
+        </Col>
+        <Col lg={6}>
+            <PaymentsTable></PaymentsTable>
         </Col>
       </Row>
     </Container>
