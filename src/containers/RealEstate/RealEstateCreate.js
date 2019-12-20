@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form } from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
-import { Colors } from "../../Colors";
 
 export default function RealEstateCreate(props) {
   const [country, setCountry] = useState("");
@@ -16,7 +15,6 @@ export default function RealEstateCreate(props) {
   const [imageUrl, setImageUrl] = useState("");
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const errorOpen = Boolean(anchorEl);
 
   function validateForm() {
     return country.length > 0

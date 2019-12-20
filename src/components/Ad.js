@@ -34,21 +34,8 @@ class Ad extends Component {
                         title="gfd"
                     />
                     <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">{description}</Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">{description.slice(0, 35)+"..."}</Typography>
                     </CardContent>
-                    <CardActions disableSpacing>
-                        <IconButton aria-label="add to favorites">
-                            <FavoriteIcon />
-                        </IconButton>
-                        <IconButton aria-label="share">
-                            <ShareIcon />
-                        </IconButton>
-                        <IconButton
-                            aria-label="show more"
-                        >
-                            <ExpandMoreIcon />
-                        </IconButton>
-                    </CardActions>
                 </Card>
             </>
         )
