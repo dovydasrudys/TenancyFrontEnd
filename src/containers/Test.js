@@ -65,6 +65,141 @@ const adverts = [
     }
 ];
 
+const payments = [
+    {
+        id: 1,
+        status: 0,
+        issueDate: "2019-12-01",
+        services: [
+            {
+                id: 1,
+                description: "Electricity",
+                amount: 50
+            },
+            {
+                id: 2,
+                description: "Water",
+                amount: 50
+            },
+            {
+                id: 3,
+                description: "Ethernet",
+                amount: 35
+            }
+        ]
+    },
+    {
+        id: 2,
+        status: 1,
+        issueDate: "2019-12-01",
+        services: [
+            {
+                id: 1,
+                description: "Electricity",
+                amount: 50
+            },
+            {
+                id: 2,
+                description: "Water",
+                amount: 50
+            },
+            {
+                id: 3,
+                description: "Ethernet",
+                amount: 35
+            }
+        ]
+    },
+    {
+        id: 3,
+        status: 1,
+        issueDate: "2019-12-01",
+        services: [
+            {
+                id: 1,
+                description: "Electricity",
+                amount: 50
+            },
+            {
+                id: 2,
+                description: "Water",
+                amount: 50
+            },
+            {
+                id: 3,
+                description: "Ethernet",
+                amount: 35
+            }
+        ]
+    },
+    {
+        id: 4,
+        status: 1,
+        issueDate: "2019-12-01",
+        services: [
+            {
+                id: 1,
+                description: "Electricity",
+                amount: 50
+            },
+            {
+                id: 2,
+                description: "Water",
+                amount: 50
+            },
+            {
+                id: 3,
+                description: "Ethernet",
+                amount: 35
+            }
+        ]
+    },
+    {
+        id: 5,
+        status: 1,
+        issueDate: "2019-12-01",
+        services: [
+            {
+                id: 1,
+                description: "Electricity",
+                amount: 50
+            },
+            {
+                id: 2,
+                description: "Water",
+                amount: 50
+            },
+            {
+                id: 3,
+                description: "Ethernet",
+                amount: 35
+            }
+        ]
+    },
+    {
+        id: 6,
+        status: 1,
+        issueDate: "2019-12-01",
+        services: [
+            {
+                id: 1,
+                description: "Electricity",
+                amount: 50
+            },
+            {
+                id: 2,
+                description: "Water",
+                amount: 50
+            },
+            {
+                id: 3,
+                description: "Ethernet",
+                amount: 35
+            }
+        ]
+    }
+];
+
 export default function Test(props) {
 
   return (
@@ -76,14 +211,24 @@ export default function Test(props) {
                 adverts= {adverts}
                 color={Colors.third}
                 onAdClick={(id) => console.log(id)}
+                primaryColor={Colors.second}
+                secondaryColor={Colors.first}
             >
             </AdsBoard>
         </Col>
         <Col lg={6}>
-            <RealEstateCreate></RealEstateCreate>
+            <RealEstateCreate
+                primaryColor={Colors.second}
+                secondaryColor={Colors.first}
+            ></RealEstateCreate>
         </Col>
         <Col lg={6}>
-            <PaymentsTable></PaymentsTable>
+            <PaymentsTable
+                title="Payments"
+                payments={payments}
+                primaryColor={Colors.second}
+                secondaryColor={Colors.first}
+            ></PaymentsTable>
         </Col>
       </Row>
     </Container>

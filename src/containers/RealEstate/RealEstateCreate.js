@@ -43,7 +43,7 @@ export default function RealEstateCreate(props) {
     <Container>
       <Row className="justify-content-center">
         <Column>
-          <Paper elevation={10} style={{ backgroundColor: Colors.first }}>
+          <Paper elevation={10} style={{ backgroundColor: props.primaryColor }}>
             <Form className="p-5">
               <FormGroup controlId="country">
                 <FormLabel>Country</FormLabel>
@@ -53,7 +53,7 @@ export default function RealEstateCreate(props) {
                   value={country}
                   onChange={e => { setCountry(e.target.value);}}
                   placeholder="Lithuania"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="city">
@@ -64,7 +64,7 @@ export default function RealEstateCreate(props) {
                   value={city}
                   onChange={e => { setCity(e.target.value);}}
                   placeholder="Kaunas"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="street">
@@ -75,7 +75,7 @@ export default function RealEstateCreate(props) {
                   value={street}
                   onChange={e => { setStreet(e.target.value);}}
                   placeholder="Laisvės al."
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="houseNr">
@@ -86,7 +86,7 @@ export default function RealEstateCreate(props) {
                   value={houseNr}
                   onChange={e => { setHouseNr(e.target.value);}}
                   placeholder="1"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="area">
@@ -97,7 +97,7 @@ export default function RealEstateCreate(props) {
                   value={area}
                   onChange={e => { setArea(e.target.value);}}
                   placeholder="80"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="rooms">
@@ -107,7 +107,7 @@ export default function RealEstateCreate(props) {
                   onChange={e => { setRooms(e.target.value);}}
                   type="number"
                   placeholder="1"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="floor">
@@ -117,7 +117,7 @@ export default function RealEstateCreate(props) {
                   onChange={e => { setFloor(e.target.value);}}
                   type="number"
                   placeholder="1"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="buildYear">
@@ -127,7 +127,7 @@ export default function RealEstateCreate(props) {
                   onChange={e => { setBuildYear(e.target.value);}}
                   type="number"
                   placeholder="1999"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <FormGroup controlId="imageUrl">
@@ -137,7 +137,7 @@ export default function RealEstateCreate(props) {
                   onChange={e => { setImageUrl(e.target.value);}}
                   type="text"
                   placeholder="www.pictures.com/houses/1"
-                  style={{ backgroundColor: Colors.second }}
+                  style={{ backgroundColor: props.secondaryColor }}
                 />
               </FormGroup>
               <Button disabled={!validateForm()} type="submit" onClick={handleSubmit} style={{marginRight: "16px"}}>

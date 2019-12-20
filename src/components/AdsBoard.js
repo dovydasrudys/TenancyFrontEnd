@@ -46,7 +46,7 @@ class AdsBoard extends Component {
         const { rowsPerPage, page } = this.state;
 
         return (
-            <Paper elevation={5}>
+            <Paper elevation={5} style={{backgroundColor: this.props.primaryColor}}>
                 <Container>
                     <Row className="justify-content-center" style={{margin: "4px"}}>
                         <Typography variant="h4">{this.props.title}</Typography>
@@ -57,11 +57,11 @@ class AdsBoard extends Component {
                             : this.props.adverts
                         ).map(row => (
                             <Col key={row.id} lg={6} style={{ padding: "0px" }}>
-                                <Ad style={{ margin: "4px" }} info={row} onClick={() => this.props.onAdClick(row.id)}></Ad>
+                                <Ad style={{ margin: "4px", backgroundColor: this.props.secondaryColor }} info={row} onClick={() => this.props.onAdClick(row.id)}></Ad>
                             </Col>
                         ))}
                     </Row>
-                    <Row className="justify-content-center">
+                    <Row className="justify-content-center align-items-center">
                         {this.paginator()}
                     </Row>
                 </Container>
@@ -87,6 +87,7 @@ class AdsBoard extends Component {
                 >
                     <KeyboardArrowLeft />
                 </IconButton>
+        <Typography variant="h6">{this.state.page}</Typography>
                 <IconButton
                     onClick={this.handleNextButtonClick}
                     disabled={this.state.page === Math.ceil(this.props.adverts.length / this.state.rowsPerPage)}

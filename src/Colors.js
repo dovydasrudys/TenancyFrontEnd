@@ -1,7 +1,7 @@
 export const Colors = {
-    first: "#DDD1C7",
-    second: "#CEBEB1",
-    third: "#B59880",
-    fourth: "#89837E",
-    fifth: "#665649"
+    first: "#E0FBFC",
+    second: "#C0E1E2",
+    third: "#9CBEBF",
+    fourth: "#5B7172",
+    fifth: "#253738"
 }
