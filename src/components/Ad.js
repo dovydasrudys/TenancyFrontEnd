@@ -1,40 +1,29 @@
 import React, { Component } from "react";
-import IconButton from '@material-ui/core/IconButton';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
-import CardActions from '@material-ui/core/CardActions';
 import Typography from '@material-ui/core/Typography';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 class Ad extends Component {
 
     render() {
-        const {id, location, rooms, floor, price, img, description} = this.props.info
+        const {id, description, loanPrice, realEstate} = this.props.info
 
         return (
             <>
                 <Card key={id} style={this.props.style} elevation={5} onClick={this.props.onClick}>
                     <CardHeader
-                        action={
-                            <IconButton aria-label="settings">
-                                <MoreVertIcon />
-                            </IconButton>
-                        }
-                        title={`${location} ${price}$`}
-                        subheader={`Rooms: ${rooms} , Floor: ${floor}`}
+                        title={`${realEstate.street},${realEstate.houseNr} ${loanPrice}$`}
+                        subheader={`Rooms: ${realEstate.rooms} , Floor: ${realEstate.floor}`}
                     />
                     <CardMedia
                         component="img"
-                        image={img}
-                        title="gfd"
+                        image={realEstate.imageUrl}
+                        title="Image"
                     />
                     <CardContent>
-                        <Typography variant="body2" color="textSecondary" component="p">{description.slice(0, 35)+"..."}</Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">{description.length > 40 ? description.slice(0, 35)+"..." : description}</Typography>
                     </CardContent>
                 </Card>
             </>

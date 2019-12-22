@@ -55,9 +55,9 @@ class FailuresTable extends Component {
             <>
                 <Paper elevation={5} style={{ backgroundColor: this.props.primaryColor }}>
                     <Container>
-                        <Row className="justify-content-center" style={{ margin: "8px" }}>
+                        <Row noGutters className="justify-content-center">
                             <Col>
-                                <Typography align="center" variant="h4">{this.props.title}</Typography>
+                                <Typography style={{ marginTop: "8px" }} align="center" variant="h4">{this.props.title}</Typography>
                             </Col>
                             {this.props.withAddButton ?
                             <Col xs={1}>
@@ -71,7 +71,7 @@ class FailuresTable extends Component {
                             </Col>
                             : null}
                         </Row>
-                        <Row>
+                        <Row noGutters>
                             <Col>
                                 {(this.state.rowsPerPage > 0
                                     ? this.props.failures.slice((page - 1) * rowsPerPage, (page - 1) * rowsPerPage + rowsPerPage)
@@ -83,7 +83,7 @@ class FailuresTable extends Component {
                                             aria-controls="panel1a-content"
                                             id={failure.id}
                                         >
-                                            <Typography style={{width: "100%"}} align="center">{failure.issueDate}</Typography>
+                                            <Typography style={{width: "100%"}} align="center">{failure.issueDate.slice(0,10)}</Typography>
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <Container>
@@ -94,9 +94,9 @@ class FailuresTable extends Component {
                                                     {this.props.editable ?
                                                         <>
                                                             <Col>
-                                                                <Button className="mx-1" variant="warning" onClick={() => this.props.onEdit(failure.id)}>Edit</Button>
+                                                                <Button className="mx-1" variant="warning" onClick={() => this.props.onEdit(failure)}>Edit</Button>
                                                             
-                                                                <Button className="mx-1" variant="danger" onClick={() => this.props.onDelete(failure.id)}>Delete</Button>
+                                                                <Button className="mx-1" variant="danger" onClick={() => this.props.onDelete(failure)}>Delete</Button>
                                                             </Col>
                                                         </>
                                                         :
@@ -136,14 +136,14 @@ class FailuresTable extends Component {
                 <Typography variant="h6">{this.state.page}</Typography>
                 <IconButton
                     onClick={this.handleNextButtonClick}
-                    disabled={this.state.page === Math.ceil(this.props.failures.length / this.state.rowsPerPage)}
+                    disabled={this.state.page >= Math.ceil(this.props.failures.length / this.state.rowsPerPage)}
                     aria-label="next page"
                 >
                     <KeyboardArrowRight />
                 </IconButton>
                 <IconButton
                     onClick={this.handleLastPageButtonClick}
-                    disabled={this.state.page === Math.ceil(this.props.failures.length / this.state.rowsPerPage)}
+                    disabled={this.state.page >= Math.ceil(this.props.failures.length / this.state.rowsPerPage)}
                     aria-label="last page"
                 >
                     <LastPageIcon />

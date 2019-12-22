@@ -21,7 +21,7 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Button } from 'react-bootstrap';
 
-class PaymentsTable extends Component {
+class RealEstatesTable extends Component {
     state = {
         rowsPerPage: 5,
         page: 1
@@ -47,7 +47,7 @@ class PaymentsTable extends Component {
 
     handleLastPageButtonClick = () => {
         this.setState({
-            page: Math.ceil(this.props.payments.length / this.state.rowsPerPage)
+            page: Math.ceil(this.props.realEstates.length / this.state.rowsPerPage)
         })
     };
 
@@ -65,7 +65,7 @@ class PaymentsTable extends Component {
                                 <Col xs={1}>
                                     <IconButton
                                         onClick={this.props.onAdd}
-                                        aria-label="add payment"
+                                        aria-label="add real estate"
 
                                     >
                                         <AddIcon />
@@ -76,54 +76,76 @@ class PaymentsTable extends Component {
                         <Row noGutters>
                             <Col>
                                 {(this.state.rowsPerPage > 0
-                                    ? this.props.payments.slice((page - 1) * rowsPerPage, (page - 1) * rowsPerPage + rowsPerPage)
-                                    : this.props.payments
-                                ).map(payment => (
-                                    <ExpansionPanel key={payment.id} style={{ backgroundColor: (payment.status ? this.props.secondaryColor : this.props.accentColor) }}>
+                                    ? this.props.realEstates.slice((page - 1) * rowsPerPage, (page - 1) * rowsPerPage + rowsPerPage)
+                                    : this.props.realEstates
+                                ).map(realEstate => (
+                                    <ExpansionPanel key={realEstate.id} style={{ backgroundColor: this.props.secondaryColor }}>
                                         <ExpansionPanelSummary
                                             expandIcon={<ExpandMoreIcon />}
                                             aria-controls="panel1a-content"
-                                            id={payment.id}
+                                            id={realEstate.id}
                                         >
-                                            <Typography style={{ width: "100%" }} align="center">{payment.issueDate.slice(0,10)}</Typography>
+                                            <Typography style={{ width: "100%" }} align="center">{realEstate.street + " " + realEstate.houseNr}</Typography>
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <Container>
                                                 <Row className="my-3">
                                                     <Table aria-label="simple table">
                                                         <TableBody>
-                                                            {payment.services.map(service => (
-                                                                <TableRow key={service.id}>
-                                                                    <TableCell component="th" scope="row">
-                                                                        #{service.id}
-                                                                    </TableCell>
-                                                                    <TableCell>{service.description}</TableCell>
-                                                                    <TableCell align="right">{service.amount}€</TableCell>
-                                                                </TableRow>
-                                                            ))}
                                                             <TableRow>
-                                                                <TableCell colSpan={2} align="right">Sum:</TableCell>
-                                                                <TableCell align="right">{payment.services.map(service => service.amount).reduce((a, b) => a + b, 0)}€</TableCell>
+                                                                <TableCell>
+                                                                    <Typography>Address</Typography>
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <Typography>{realEstate.street + " " + realEstate.houseNr}</Typography>
+                                                                </TableCell>
                                                             </TableRow>
-
+                                                            <TableRow>
+                                                                <TableCell>
+                                                                    <Typography>Area</Typography>
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <Typography>{realEstate.area}</Typography>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell>
+                                                                    <Typography>Rooms</Typography>
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <Typography>{realEstate.rooms}</Typography>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell>
+                                                                    <Typography>Floor</Typography>
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <Typography>{realEstate.floor}</Typography>
+                                                                </TableCell>
+                                                            </TableRow>
+                                                            <TableRow>
+                                                                <TableCell>
+                                                                    <Typography>Build year</Typography>
+                                                                </TableCell>
+                                                                <TableCell>
+                                                                    <Typography>{realEstate.buildYear}</Typography>
+                                                                </TableCell>
+                                                            </TableRow>
                                                         </TableBody>
                                                     </Table>
                                                 </Row>
-                                                <Row style={{textAlign: "right"}}>
+                                                <Row style={{ textAlign: "right" }}>
                                                     {this.props.editable ?
                                                         <>
                                                             <Col>
-                                                                <Button className="mx-1" variant="warning" onClick={() => this.props.onEdit(payment)}>Edit</Button>
-                                                            
-                                                                <Button className="mx-1" variant="danger" onClick={() => this.props.onDelete(payment)}>Delete</Button>
+                                                                <Button className="mx-1" variant="warning" onClick={() => this.props.onEdit(realEstate)}>Edit</Button>
+
+                                                                <Button className="mx-1" variant="danger" onClick={() => this.props.onDelete(realEstate.id)}>Delete</Button>
                                                             </Col>
                                                         </>
                                                         :
                                                         null}
-                                                    {payment.paymentStatus == 1 || !this.props.payable ? null :
-
-                                                        <Button onClick={() => this.props.onPay(payment)}>Pay</Button>
-                                                    }
                                                 </Row>
                                             </Container>
                                         </ExpansionPanelDetails>
@@ -159,14 +181,14 @@ class PaymentsTable extends Component {
                 <Typography variant="h6">{this.state.page}</Typography>
                 <IconButton
                     onClick={this.handleNextButtonClick}
-                    disabled={this.state.page >= Math.ceil(this.props.payments.length / this.state.rowsPerPage)}
+                    disabled={this.state.page >= Math.ceil(this.props.realEstates.length / this.state.rowsPerPage)}
                     aria-label="next page"
                 >
                     <KeyboardArrowRight />
                 </IconButton>
                 <IconButton
                     onClick={this.handleLastPageButtonClick}
-                    disabled={this.state.page >= Math.ceil(this.props.payments.length / this.state.rowsPerPage)}
+                    disabled={this.state.page >= Math.ceil(this.props.realEstates.length / this.state.rowsPerPage)}
                     aria-label="last page"
                 >
                     <LastPageIcon />
@@ -176,4 +198,4 @@ class PaymentsTable extends Component {
     }
 }
 
-export default PaymentsTable;
+export default RealEstatesTable;

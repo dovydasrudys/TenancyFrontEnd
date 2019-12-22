@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form } from "react-bootstrap";
+import { Button, FormGroup, FormControl, FormLabel, Form } from "react-bootstrap";
 import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 
@@ -13,8 +13,6 @@ export default function RealEstateCreate(props) {
   const [floor, setFloor] = useState(1);
   const [buildYear, setBuildYear] = useState(1999);
   const [imageUrl, setImageUrl] = useState("");
-  const [anchorEl, setAnchorEl] = React.useState(null);
-
 
   function validateForm() {
     return country.length > 0
@@ -29,8 +27,6 @@ export default function RealEstateCreate(props) {
   function handleSubmit(event) {
     event.preventDefault();
 
-    setAnchorEl(event.currentTarget)
-
     axios.post("https://localhost:44318/api/users", {
     }).then(res => {
       console.log(res.data);
@@ -38,10 +34,7 @@ export default function RealEstateCreate(props) {
   }
 
   return (
-    <Container>
-      <Row className="justify-content-center">
-        <Column>
-          <Paper elevation={10} style={{ backgroundColor: props.primaryColor }}>
+          <Paper elevation={5} style={{ backgroundColor: props.primaryColor }}>
             <Form className="p-5">
               <FormGroup controlId="country">
                 <FormLabel>Country</FormLabel>
@@ -146,8 +139,5 @@ export default function RealEstateCreate(props) {
               </Button>
             </Form>
           </Paper>
-        </Column>
-      </Row>
-    </Container>
   );
 }

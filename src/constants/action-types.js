@@ -1,0 +1,30 @@
+export const SET_ADS = "SET_ADS";
+export const SET_MY_ADS = "SET_MY_ADS";
+export const SET_AD = "SET_AD";
+export const CREATE_AD = "CREATE_AD";
+export const UPDATE_AD = "UPDATE_AD";
+export const DELETE_AD = "DELETE_AD";
+
+export const REGISTER = "REGISTER";
+export const SET_USER = "SET_USER";
+export const LOGOUT = "LOGOUT";
+
+export const SET_MY_CONTRACTS = "SET_MY_CONTRACTS";
+export const SET_CONTRACT = "SET_CONTRACT";
+export const CREATE_CONTRACT = "CREATE_CONTRACT";
+export const UPDATE_CONTRACT = "UPDATE_CONTRACT";
+export const DELETE_CONTRACT = "DELETE_CONTRACT";
+
+export const SET_MY_REALESTATES = "SET_MY_REALESTATES";
+export const SET_REALESTATE = "SET_REALESTATE";
+export const CREATE_REALESTATE = "CREATE_REALESTATE";
+export const UPDATE_REALESTATE = "UPDATE_REALESTATE";
+export const DELETE_REALESTATE = "DELETE_REALESTATE";
+
+export const SET_CONTRACTS_PAYMENTS = "SET_CONTRACTS_PAYMENTS";
+
+export const SET_CONTRACTS_FAILURES = "SET_CONTRACTS_FAILURES";
+export const SET_FAILURE = "SET_FAILURE";
+export const CREATE_FAILURE = "CREATE_FAILURE";
+export const UPDATE_FAILURE = "UPDATE_FAILURE";
+export const DELETE_FAILURE = "DELETE_FAILURE";

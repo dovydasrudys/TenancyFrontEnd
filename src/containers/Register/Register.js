@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
+
+import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+
+import { register } from "../../actions/UserActions";
+
 import { Button, FormGroup, FormControl, FormLabel, Container, Row, Col as Column, Form, Image } from "react-bootstrap";
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
@@ -6,45 +12,43 @@ import Paper from "@material-ui/core/Paper";
 import axios from "axios";
 import { Colors } from "../../Colors";
 
-export default function Login(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [error, setError] = useState("");
-  const [anchorEl, setAnchorEl] = React.useState(null);
+class Register extends Component {
+  state = {
+    userName: "",
+    password: "",
+    repeatPassword: "",
+    firstName: "",
+    lastName: ""
+  }
 
-  const errorOpen = Boolean(anchorEl);
+  validateForm = () => {
+    const {userName, password, repeatPassword, firstName, lastName} = this.state;
 
-  function validateForm() {
-    return email.length > 0
+    return userName.length > 0
       && password.length > 0
       && repeatPassword.length > 0
       && firstName.length > 0
       && lastName.length > 0;
   }
 
-  function handleSubmit(event) {
+  handleSubmit = (event) => {
     event.preventDefault();
 
-    setAnchorEl(event.currentTarget)
+    const {userName, password, repeatPassword, firstName, lastName} = this.state;
 
     if (password !== repeatPassword) {
-      setError("Passwords don't match !");
       return;
     }
 
-    axios.post("https://localhost:44318/api/users", {
-      UserName: email,
-      Password: password
-    }).then(res => {
-      console.log(res.data);
-    })
+    this.props.register(this.state);
+    this.props.history.push("/")
   }
 
-  return (
-    <Container>
+  render() { 
+    const {userName, password, repeatPassword, firstName, lastName} = this.state;
+
+    return (
+      <Container>
       <Row className="justify-content-center my-5">
         <Column style={{ textAlign: "center" }}>
           <Image src={process.env.PUBLIC_URL + '/Logo.png'}></Image>
@@ -59,8 +63,8 @@ export default function Login(props) {
                 <FormControl
                   autoFocus
                   type="email"
-                  value={email}
-                  onChange={e => { setEmail(e.target.value);}}
+                  value={userName}
+                  onChange={e => this.setState({ userName: e.target.value })}
                   placeholder="john@doe.com"
                   style={{ backgroundColor: Colors.second }}
                 />
@@ -71,7 +75,7 @@ export default function Login(props) {
                   autoFocus
                   type="text"
                   value={firstName}
-                  onChange={e => { setFirstName(e.target.value);}}
+                  onChange={e => this.setState({ firstName: e.target.value })}
                   placeholder="John"
                   style={{ backgroundColor: Colors.second }}
                 />
@@ -82,7 +86,7 @@ export default function Login(props) {
                   autoFocus
                   type="text"
                   value={lastName}
-                  onChange={e => { setLastName(e.target.value);}}
+                  onChange={e => this.setState({ lastName: e.target.value })}
                   placeholder="Doe"
                   style={{ backgroundColor: Colors.second }}
                 />
@@ -91,7 +95,7 @@ export default function Login(props) {
                 <FormLabel>Password</FormLabel>
                 <FormControl
                   value={password}
-                  onChange={e => { setPassword(e.target.value);}}
+                  onChange={e => this.setState({ password: e.target.value })}
                   type="password"
                   placeholder="Type your password here"
                   style={{ backgroundColor: Colors.second }}
@@ -101,39 +105,31 @@ export default function Login(props) {
                 <FormLabel>Repeat your password</FormLabel>
                 <FormControl
                   value={repeatPassword}
-                  onChange={e => { setRepeatPassword(e.target.value);}}
+                  onChange={e => this.setState({ repeatPassword: e.target.value })}
                   type="password"
                   placeholder="Type your password here"
                   style={{ backgroundColor: Colors.second }}
                 />
               </FormGroup>
-              <Button disabled={!validateForm()} type="submit" onClick={handleSubmit}>
+              <Button disabled={!this.validateForm()} type="submit" onClick={this.handleSubmit}>
                 Register
+              </Button>
+              <Button variant="outline-success" style={{float: "right"}} onClick={() => this.props.history.push("/")}>
+                Go to homepage
               </Button>
             </Form>
           </Paper>
         </Column>
       </Row>
-      {error.length > 0 ?
-        <Row className="justify-content-center">
-          <Popover
-            open={errorOpen}
-            onClose={()=>setAnchorEl(null)}
-            anchorEl={anchorEl}
-            anchorOrigin={{
-              vertical: 'center',
-              horizontal: 'right',
-            }}
-            transformOrigin={{
-              vertical: 'center',
-              horizontal: 'left',
-            }}
-          >
-            <Typography style={{padding: "2px"}}>Passwords don't match !</Typography>
-          </Popover>
-        </Row>
-        : ""
-      }
     </Container>
-  );
+    );
+  }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    register: (user) => dispatch(register(user))
+  }
+}
+
+export default withRouter(connect(null, mapDispatchToProps)(Register));

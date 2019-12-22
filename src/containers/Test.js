@@ -7,6 +7,9 @@ import AdsBoard from "../components/AdsBoard";
 import RealEstateCreate from "../containers/RealEstate/RealEstateCreate";
 import PaymentsTable from "../components/PaymentsTable";
 import FailuresTable from "../components/FailuresTable";
+import ContractsTable from "../components/ContractsTable";
+import RealEstatesTable from "../components/RealEstatesTable";
+import ContractInfo from "../components/ContractInfo";
 
 const adverts = [
     {
@@ -238,6 +241,161 @@ const failures = [
         isFixed: 1,
         description: "Fridge broke fdsfdsfsdfsdsfdscdgdfsgd jfkdfjdjfkdsflaf dskfjlksdjflsdnf,nv;dfioafj dklsjfslj flsjdf sdncvnsldfjk lsjfkl sdfsdnmflskd jfioewj fkldsjflsd"
     },
+];
+
+const contracts = [
+    {
+        id: 1,
+        price: 300,
+        start: "2020-01-01",
+        duration: 12,
+        tenant: {
+            id: 2,
+            firstName: "Julius",
+            lastName: "Julaitis"
+        },
+        realEstate: {
+            id: 1,
+            street: "Veiverių g.",
+            houseNr: "15A",
+            area: 45.5,
+            rooms: 2,
+            floor: 6,
+            buildYear: 1999
+        }
+    },
+    {
+        id: 2,
+        price: 300,
+        start: "2020-01-01",
+        duration: 12,
+        tenant: {
+            id: 2,
+            firstName: "Julius",
+            lastName: "Julaitis"
+        },
+        realEstate: {
+            id: 5,
+            address: "Vilnius, Juozo gatvė 3"
+        }
+    },
+    {
+        id: 3,
+        price: 300,
+        start: "2020-01-01",
+        duration: 12,
+        tenant: {
+            id: 2,
+            firstName: "Julius",
+            lastName: "Julaitis"
+        },
+        realEstate: {
+            id: 5,
+            address: "Vilnius, Juozo gatvė 3"
+        }
+    },
+    {
+        id: 4,
+        price: 300,
+        start: "2020-01-01",
+        duration: 12,
+        tenant: {
+            id: 2,
+            firstName: "Julius",
+            lastName: "Julaitis"
+        },
+        realEstate: {
+            id: 5,
+            address: "Vilnius, Juozo gatvė 3"
+        }
+    },
+    {
+        id: 5,
+        price: 300,
+        start: "2020-01-01",
+        duration: 12,
+        tenant: {
+            id: 2,
+            firstName: "Julius",
+            lastName: "Julaitis"
+        },
+        realEstate: {
+            id: 5,
+            address: "Vilnius, Juozo gatvė 3"
+        }
+    },
+    {
+        id: 6,
+        price: 300,
+        start: "2020-01-01",
+        duration: 12,
+        tenant: {
+            id: 2,
+            firstName: "Julius",
+            lastName: "Julaitis"
+        },
+        realEstate: {
+            id: 5,
+            address: "Vilnius, Juozo gatvė 3"
+        }
+    }
+];
+
+const realEstates = [
+    {
+        id: 1,
+        street: "Veiverių g.",
+        houseNr: "15A",
+        area: 45.5,
+        rooms: 2,
+        floor: 6,
+        buildYear: 1999
+    },
+    {
+        id: 2,
+        street: "Veiverių g.",
+        houseNr: "15A",
+        area: 45.5,
+        rooms: 2,
+        floor: 6,
+        buildYear: 1999
+    },
+    {
+        id: 3,
+        street: "Veiverių g.",
+        houseNr: "15A",
+        area: 45.5,
+        rooms: 2,
+        floor: 6,
+        buildYear: 1999
+    },
+    {
+        id: 4,
+        street: "Veiverių g.",
+        houseNr: "15A",
+        area: 45.5,
+        rooms: 2,
+        floor: 6,
+        buildYear: 1999
+    },
+    {
+        id: 5,
+        street: "Veiverių g.",
+        houseNr: "15A",
+        area: 45.5,
+        rooms: 2,
+        floor: 6,
+        buildYear: 1999
+    },
+    {
+        id: 6,
+        street: "Veiverių g.",
+        houseNr: "15A",
+        area: 45.5,
+        rooms: 2,
+        floor: 6,
+        buildYear: 1999
+    }
 ]
 
 export default function Test(props) {
@@ -247,8 +405,8 @@ export default function Test(props) {
     return (
         <>
         <Container>
-            <Row>
-                <Col lg={6}>
+            <Row className="justify-content-center">
+                <Col lg={8}>
                     <AdsBoard
                         title="Advertisements"
                         adverts={adverts}
@@ -293,6 +451,43 @@ export default function Test(props) {
                         onEdit={(id) => console.log("edit")}
                         onDelete={(id) => console.log("delete")}
                     ></FailuresTable>
+                </Col>
+                <Col lg={6} className="my-5">
+                    <ContractsTable
+                        title="Contracts"
+                        contracts={contracts}
+                        primaryColor={Colors.second}
+                        secondaryColor={Colors.first}
+                        accentColor={Colors.third}
+                        withAddButton
+                        onAdd={() => console.log("add")}
+                        editable
+                        onEdit={(id) => console.log("edit")}
+                        onDelete={(id) => console.log("delete")}
+                    ></ContractsTable>
+                </Col>
+                <Col lg={6} className="my-5">
+                    <RealEstatesTable
+                        title="Real estates"
+                        realEstates={realEstates}
+                        primaryColor={Colors.second}
+                        secondaryColor={Colors.first}
+                        accentColor={Colors.third}
+                        withAddButton
+                        onAdd={() => console.log("add")}
+                        editable
+                        onEdit={(id) => console.log("edit")}
+                        onDelete={(id) => console.log("delete")}
+                    ></RealEstatesTable>
+                </Col>
+                <Col lg={6} className="my-5">
+                    <ContractInfo
+                        title="Info"
+                        contract={contracts[0]}
+                        primaryColor={Colors.second}
+                        secondaryColor={Colors.first}
+                        accentColor={Colors.third}
+                    ></ContractInfo>
                 </Col>
             </Row>
         </Container>
