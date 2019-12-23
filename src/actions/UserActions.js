@@ -38,6 +38,24 @@ export function login(userName, password) {
     }
 };
 
+export function facebookLogin(code) {
+
+    return function(dispatch){
+
+            axios.post(`${serverUrl}/users/facebook`, {
+                code: code
+            }).then(res => {
+                dispatch(setUser(res.data));
+            }).catch(error => {
+
+                if(error.response.status == 400){
+                    console.log("User could not be found");
+                }
+
+            });     
+    }
+};
+
 export function register(user){
     return function(dispatch){
         return axios.post(`${serverUrl}/users`, user).then(res => {

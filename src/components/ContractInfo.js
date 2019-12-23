@@ -49,6 +49,14 @@ class ContractInfo extends Component {
                                             </TableRow>
                                             <TableRow>
                                                 <TableCell>
+                                                    <Typography>Duration (months):</Typography>
+                                                </TableCell>
+                                                <TableCell>
+                                                    <Typography align="left">{this.props.contract.duration}</Typography>
+                                                </TableCell>
+                                            </TableRow>
+                                            <TableRow>
+                                                <TableCell>
                                                     <Typography>Area:</Typography>
                                                 </TableCell>
                                                 <TableCell>

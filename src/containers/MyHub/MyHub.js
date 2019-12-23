@@ -110,36 +110,44 @@ class MyHub extends Component {
                             />
 
                         </Col>
-                        <Col lg={6} style={{ marginTop: "50px" }}>
-                            <RealEstatesTable
-                                title="My real estates"
-                                realEstates={this.props.myRealEstates}
-                                primaryColor={Colors.second}
-                                secondaryColor={Colors.first}
-                                accentColor={Colors.third}
-                                withAddButton={this.props.user.role === "landlord"}
-                                onAdd={() => this.handleRealEstateModal()}
-                                editable={this.props.user.role === "landlord"}
-                                onEdit={(realEstate) => this.handleRealEstateEdit(realEstate)}
-                                onDelete={(id) => this.handleRealEstateDelete(id)}
-                            ></RealEstatesTable>
-                        </Col>
+                        {
+                            this.props.user.role === "landlord" ?
+                                <Col lg={6} style={{ marginTop: "50px" }}>
+                                    <RealEstatesTable
+                                        title="My real estates"
+                                        realEstates={this.props.myRealEstates}
+                                        primaryColor={Colors.second}
+                                        secondaryColor={Colors.first}
+                                        accentColor={Colors.third}
+                                        withAddButton={this.props.user.role === "landlord"}
+                                        onAdd={() => this.handleRealEstateModal()}
+                                        editable={this.props.user.role === "landlord"}
+                                        onEdit={(realEstate) => this.handleRealEstateEdit(realEstate)}
+                                        onDelete={(id) => this.handleRealEstateDelete(id)}
+                                    ></RealEstatesTable>
+                                </Col>
+                                : null
+                        }
                     </Row>
 
-                    <Row className="justify-content-center" style={{ marginTop: "50px" }}>
-                        <Col>
-                            <AdsBoard
-                                title="My advertisements"
-                                adverts={this.props.myAds}
-                                onAdClick={(ad) => this.handleAdClick(ad)}
-                                primaryColor={Colors.second}
-                                secondaryColor={Colors.first}
-                                withAddButton
-                                onAdd={() => this.handleAdModal()}
-                            >
-                            </AdsBoard>
-                        </Col>
-                    </Row>
+                    {
+                        this.props.user.role === "landlord" ?
+                            <Row className="justify-content-center" style={{ marginTop: "50px" }}>
+                                <Col>
+                                    <AdsBoard
+                                        title="My advertisements"
+                                        adverts={this.props.myAds}
+                                        onAdClick={(ad) => this.handleAdClick(ad)}
+                                        primaryColor={Colors.second}
+                                        secondaryColor={Colors.first}
+                                        withAddButton
+                                        onAdd={() => this.handleAdModal()}
+                                    >
+                                    </AdsBoard>
+                                </Col>
+                            </Row>
+                            : null
+                    }
 
                 </Container>
 
@@ -148,10 +156,10 @@ class MyHub extends Component {
                     aria-describedby="realEstatesModal-description"
                     open={this.state.realEstateModal}
                     onClose={this.handleRealEstateModal}
-                    style={{overflowY: "auto", justifyContent: "center"}}
+                    style={{ overflowY: "auto", justifyContent: "center" }}
                 >
-                    <div style={{margin: "5%"}}>
-                        <RealEstateEdit onSubmit={this.handleRealEstateModal}/>
+                    <div style={{ margin: "5%" }}>
+                        <RealEstateEdit onSubmit={this.handleRealEstateModal} />
                     </div>
                 </Modal>
 
@@ -160,10 +168,10 @@ class MyHub extends Component {
                     aria-describedby="contractsModal-description"
                     open={this.state.contractModal}
                     onClose={this.handleContractModal}
-                    style={{overflowY: "auto", justifyContent: "center"}}
+                    style={{ overflowY: "auto", justifyContent: "center" }}
                 >
-                    <div style={{margin: "5%"}}>
-                        <ContractEdit onSubmit={this.handleContractModal}/>
+                    <div style={{ margin: "5%" }}>
+                        <ContractEdit onSubmit={this.handleContractModal} />
                     </div>
                 </Modal>
 
@@ -172,10 +180,10 @@ class MyHub extends Component {
                     aria-describedby="adsModal-description"
                     open={this.state.adModal}
                     onClose={this.handleAdModal}
-                    style={{overflowY: "auto", justifyContent: "center"}}
+                    style={{ overflowY: "auto", justifyContent: "center" }}
                 >
-                    <div style={{margin: "5%"}}>
-                        <AdEdit onSubmit={this.handleAdModal}/>
+                    <div style={{ margin: "5%" }}>
+                        <AdEdit onSubmit={this.handleAdModal} />
                     </div>
                 </Modal>
             </>

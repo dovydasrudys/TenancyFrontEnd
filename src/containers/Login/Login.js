@@ -6,7 +6,7 @@ import { FacebookLoginButton } from "react-social-login-buttons";
 import axios from "axios";
 import { Colors } from "../../Colors";
 
-import { login } from "../../actions/UserActions";
+import { login, facebookLogin } from "../../actions/UserActions";
 import { connect } from "react-redux";
 
 const queryString = require('query-string');
@@ -18,17 +18,14 @@ class Login extends Component {
     password: ""
   }
 
-  // componentDidMount() {
-  //   if(!this.props.location)
-  //     return;
-  //   const parsed = queryString.parse(this.props.location.search);
-  //   if (parsed.code)
-  //     axios.post("https://localhost:44318/api/users/facebook", {
-  //       code: parsed.code
-  //     }).then(res => {
-  //       console.log(res.data);
-  //     })
-  // }
+  componentDidMount() {
+    if(!this.props.location)
+      return;
+    const parsed = queryString.parse(this.props.location.search);
+    if (parsed.code){
+      this.props.facebookLogin(parsed.code);
+    }
+  }
 
   //history = useHistory();
 
@@ -107,7 +104,8 @@ const mapStateToProps = state => {
 
 function mapDispatchToProps(dispatch) {
   return {
-      login: (username, password) => dispatch(login(username, password))
+      login: (username, password) => dispatch(login(username, password)),
+      facebookLogin: (code) => dispatch(facebookLogin(code))
   };
 }
  
