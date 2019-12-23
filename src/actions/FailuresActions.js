@@ -3,6 +3,7 @@ import axios from "axios";
 import store from "../store/index";
 
 import { SET_CONTRACTS_FAILURES, CREATE_FAILURE, UPDATE_FAILURE, DELETE_FAILURE, SET_FAILURE } from "../constants/action-types";
+import { setSnackbar } from "./SnackbarActions";
 
 
 const serverUrl = "https://localhost:44318/api";
@@ -56,7 +57,7 @@ export function createFailure(failure){
         return axios.post(`${serverUrl}/failures`, failure, config).then(res => {
 
             dispatch(createOne(res.data));
-
+            dispatch(setSnackbar(true, "success", "Failure created !"));
         }).catch(error => {
 
         });
@@ -77,6 +78,7 @@ export function updateFailure(failure){
 
             dispatch(fetchContractsFailures(failure.contractId));
 
+            dispatch(setSnackbar(true, "success", "Failure upated !"));
         }).catch(error => {
 
         });
@@ -96,6 +98,7 @@ export function deleteFailure(failure){
         return axios.delete(`${serverUrl}/failures/${failure.id}`, config).then(res => {
 
             dispatch(fetchContractsFailures(failure.contractId));
+            dispatch(setSnackbar(true, "success", "Failure deleted !"));
 
         }).catch(error => {
 

@@ -3,6 +3,7 @@ import axios from "axios";
 import store from "../store/index";
 
 import { SET_MY_CONTRACTS, SET_CONTRACT, CREATE_CONTRACT, UPDATE_CONTRACT, DELETE_CONTRACT } from "../constants/action-types";
+import { setSnackbar } from "./SnackbarActions";
 
 
 const serverUrl = "https://localhost:44318/api";
@@ -61,6 +62,7 @@ export function createContract(contract){
         return axios.post(`${serverUrl}/contracts`, contract, config).then(res => {
 
             dispatch(createOne(res.data));
+            dispatch(setSnackbar(true, "success", "Contract created !"));
 
         }).catch(error => {
 
@@ -80,6 +82,7 @@ export function updateContract(contract){
     return function(dispatch){
         return axios.put(`${serverUrl}/contracts/${contract.id}`, contract, config).then(res => {
 
+            dispatch(setSnackbar(true, "success", "Contract updated !"));
             dispatch(fetchMyContracts());
 
         }).catch(error => {
@@ -101,9 +104,11 @@ export function deleteContract(contract){
         return axios.delete(`${serverUrl}/contracts/${contract.id}`, config).then(res => {
 
             dispatch(fetchMyContracts());
+            dispatch(setSnackbar(true, "success", "Contract deleted !"));
 
         }).catch(error => {
 
+            dispatch(setSnackbar(true, "error", "Error ocurred !"));
         });
     
     }

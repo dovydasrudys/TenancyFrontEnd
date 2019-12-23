@@ -3,6 +3,7 @@ import axios from "axios";
 import store from "../store/index";
 
 import { SET_MY_REALESTATES, CREATE_REALESTATE, UPDATE_REALESTATE, SET_REALESTATE, DELETE_REALESTATE } from "../constants/action-types";
+import { setSnackbar } from "./SnackbarActions";
 
 
 const serverUrl = "https://localhost:44318/api";
@@ -61,6 +62,7 @@ export function createRealEstate(realEstate){
         return axios.post(`${serverUrl}/realestates`, realEstate, config).then(res => {
 
             dispatch(createOne(res.data));
+            dispatch(setSnackbar(true, "success", "Real estate created !"));
 
         }).catch(error => {
 
@@ -82,6 +84,7 @@ export function updateRealEstate(realEstate){
 
             dispatch(fetchMyRealEstates());
 
+            dispatch(setSnackbar(true, "success", "Real estate updated !"));
         }).catch(error => {
 
         });
@@ -108,9 +111,11 @@ export function deleteRealEstate(id){
         return axios.delete(`${serverUrl}/realestates/${id}`, config).then(res => {
 
             dispatch(fetchMyRealEstates());
+            dispatch(setSnackbar(true, "success", "Real estate deleted !"));
 
         }).catch(error => {
 
+            dispatch(setSnackbar(true, "error", "Error. Check if real estate isn't linked to any adverts or contracts !"));
         });
     
     }

@@ -27,6 +27,7 @@ import FaceIcon from '@material-ui/icons/Face';
 
 import { Colors } from "../Colors";
 import { Button } from 'react-bootstrap';
+import GlobalSnackbar from './GlobalSnackbar';
 
 const drawerWidth = 240;
 
@@ -176,6 +177,7 @@ function Page(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         {props.children}
+        <GlobalSnackbar></GlobalSnackbar>
       </main>
     </div>
   );

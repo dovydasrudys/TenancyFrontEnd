@@ -28,3 +28,5 @@ export const SET_FAILURE = "SET_FAILURE";
 export const CREATE_FAILURE = "CREATE_FAILURE";
 export const UPDATE_FAILURE = "UPDATE_FAILURE";
 export const DELETE_FAILURE = "DELETE_FAILURE";
+
+export const SET_SNACKBAR = "SET_SNACKBAR";

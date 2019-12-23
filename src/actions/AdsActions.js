@@ -4,6 +4,8 @@ import store from "../store/index";
 
 import { SET_ADS, SET_MY_ADS, SET_AD, CREATE_AD, UPDATE_AD, DELETE_AD } from "../constants/action-types";
 
+import { setSnackbar } from "./SnackbarActions";
+
 const serverUrl = "https://localhost:44318/api";
 
 function setAds(ads){
@@ -71,10 +73,11 @@ export function createAd(ad){
     return function(dispatch){
         return axios.post(`${serverUrl}/adverts`, ad, config).then(res => {
 
+            dispatch(setSnackbar(true, "success", "Advert created !"));
             dispatch(createOne(res.data));
 
         }).catch(error => {
-
+            dispatch(setSnackbar(true, "error", "Error ocurred"));
         });
     
     }
@@ -92,9 +95,11 @@ export function updateAd(ad){
         return axios.put(`${serverUrl}/adverts/${ad.id}`, ad, config).then(res => {
 
             dispatch(fetchMyAds());
+            dispatch(setSnackbar(true, "success", "Advert updated !"));
 
         }).catch(error => {
 
+            dispatch(setSnackbar(true, "error", "Error ocurred"));
         });
     
     }
@@ -112,6 +117,7 @@ export function deleteAd(ad){
         return axios.delete(`${serverUrl}/adverts/${ad.id}`, config).then(res => {
 
             dispatch(fetchMyAds());
+            dispatch(setSnackbar(true, "success", "Advert deleted !"));
 
         }).catch(error => {
 

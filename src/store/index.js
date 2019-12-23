@@ -7,6 +7,7 @@ import contractsReducer from "../reducers/contractsReducer";
 import realEstatesReducer from "../reducers/realEstatesReducer";
 import paymentsReducer from "../reducers/paymentsReducer";
 import failuresReducer from "../reducers/failuresReducer";
+import snackbarReducer from "../reducers/snackbarReducer";
 
 const loggerMiddleware = createLogger();
 
@@ -17,6 +18,7 @@ const store = createStore(combineReducers({
     realEstatesReducer,
     paymentsReducer,
     failuresReducer,
+    snackbarReducer
 }), applyMiddleware(thunk, loggerMiddleware));
 
 export default store;
