@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Button from '@material-ui/core/Button';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import ErrorIcon from '@material-ui/icons/Error';
-import InfoIcon from '@material-ui/icons/Info';
 import CloseIcon from '@material-ui/icons/Close';
 import { amber, green } from '@material-ui/core/colors';
 import IconButton from '@material-ui/core/IconButton';
 import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
-import WarningIcon from '@material-ui/icons/Warning';
 import { makeStyles } from '@material-ui/core/styles';
 
 const variantIcon = {
@@ -83,7 +80,6 @@ const useStyles2 = makeStyles(theme => ({
 }));
 
 export default function SnackbarMessage(props) {
-  const classes = useStyles2();
   const [open, setOpen] = React.useState(false);
 
   const handleClick = () => {
@@ -99,20 +95,20 @@ export default function SnackbarMessage(props) {
   };
 
   return (
-      <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left',
-        }}
-        open={props.open}
-        autoHideDuration={6000}
+    <Snackbar
+      anchorOrigin={{
+        vertical: 'bottom',
+        horizontal: 'left',
+      }}
+      open={props.open}
+      autoHideDuration={6000}
+      onClose={props.onClose}
+    >
+      <MySnackbarContentWrapper
         onClose={props.onClose}
-      >
-        <MySnackbarContentWrapper
-          onClose={props.onClose}
-          variant={props.variant}
-          message={props.message}
-        />
-      </Snackbar>
+        variant={props.variant}
+        message={props.message}
+      />
+    </Snackbar>
   );
 }

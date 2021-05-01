@@ -2,14 +2,14 @@ import axios from "axios";
 
 import store from "../store/index";
 
-import { SET_ADS, SET_MY_ADS, SET_AD, CREATE_AD, UPDATE_AD, DELETE_AD } from "../constants/action-types";
+import { SET_ADS, SET_MY_ADS, SET_AD, CREATE_AD } from "../constants/action-types";
 
 import { setSnackbar } from "./SnackbarActions";
 
-const serverUrl = "https://localhost:44318/api";
+const serverUrl = process.env.REACT_APP_BACKEND_BASE_URL;
 
-function setAds(ads){
-    return{
+function setAds(ads) {
+    return {
         type: SET_ADS,
         payload: ads
     }
@@ -17,7 +17,7 @@ function setAds(ads){
 
 export function fetchAds() {
 
-    return function(dispatch){
+    return function (dispatch) {
         return axios.get(`${serverUrl}/adverts`).then(res => {
             //payload = res.data;
             dispatch(setAds(res.data));
@@ -25,8 +25,8 @@ export function fetchAds() {
     }
 };
 
-function setMyAds(ads){
-    return{
+function setMyAds(ads) {
+    return {
         type: SET_MY_ADS,
         payload: ads
     }
@@ -35,12 +35,12 @@ function setMyAds(ads){
 export function fetchMyAds() {
     const user = store.getState().userReducer.user;
 
-    return function(dispatch){
+    return function (dispatch) {
         return axios.get(`${serverUrl}/adverts`).then(res => {
             let ads;
-            if(user.role === "tenant"){
+            if (user.role === "tenant") {
                 return;
-            }else{
+            } else {
                 ads = res.data.filter(a => a.ownerId === user.id)
             }
             dispatch(setMyAds(ads));
@@ -48,29 +48,29 @@ export function fetchMyAds() {
     }
 }
 
-export function setAd(ad){
+export function setAd(ad) {
     return {
         type: SET_AD,
         payload: ad
     };
 }
 
-function createOne(ad){
-    return{
+function createOne(ad) {
+    return {
         type: CREATE_AD,
         payload: ad
     }
 }
 
-export function createAd(ad){
+export function createAd(ad) {
 
     const user = store.getState().userReducer.user;
 
     var config = {
-        headers: {'Authorization': "bearer " + user.token}
+        headers: { 'Authorization': "bearer " + user.token }
     };
 
-    return function(dispatch){
+    return function (dispatch) {
         return axios.post(`${serverUrl}/adverts`, ad, config).then(res => {
 
             dispatch(setSnackbar(true, "success", "Advert created !"));
@@ -79,19 +79,19 @@ export function createAd(ad){
         }).catch(error => {
             dispatch(setSnackbar(true, "error", "Error ocurred"));
         });
-    
+
     }
 };
 
-export function updateAd(ad){
+export function updateAd(ad) {
 
     const user = store.getState().userReducer.user;
 
     var config = {
-        headers: {'Authorization': "bearer " + user.token}
+        headers: { 'Authorization': "bearer " + user.token }
     };
 
-    return function(dispatch){
+    return function (dispatch) {
         return axios.put(`${serverUrl}/adverts/${ad.id}`, ad, config).then(res => {
 
             dispatch(fetchMyAds());
@@ -101,19 +101,19 @@ export function updateAd(ad){
 
             dispatch(setSnackbar(true, "error", "Error ocurred"));
         });
-    
+
     }
 };
 
-export function deleteAd(ad){
+export function deleteAd(ad) {
 
     const user = store.getState().userReducer.user;
 
     var config = {
-        headers: {'Authorization': "bearer " + user.token}
+        headers: { 'Authorization': "bearer " + user.token }
     };
 
-    return function(dispatch){
+    return function (dispatch) {
         return axios.delete(`${serverUrl}/adverts/${ad.id}`, config).then(res => {
 
             dispatch(fetchMyAds());
@@ -122,6 +122,6 @@ export function deleteAd(ad){
         }).catch(error => {
 
         });
-    
+
     }
 };

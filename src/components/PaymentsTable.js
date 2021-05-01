@@ -85,7 +85,7 @@ class PaymentsTable extends Component {
                                             aria-controls="panel1a-content"
                                             id={payment.id}
                                         >
-                                            <Typography style={{ width: "100%" }} align="center">{payment.issueDate.slice(0,10)}</Typography>
+                                            <Typography style={{ width: "100%" }} align="center">{payment.issueDate.slice(0, 10)}</Typography>
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <Container>
@@ -109,18 +109,18 @@ class PaymentsTable extends Component {
                                                         </TableBody>
                                                     </Table>
                                                 </Row>
-                                                <Row style={{textAlign: "right"}}>
+                                                <Row style={{ textAlign: "right" }}>
                                                     {this.props.editable ?
                                                         <>
                                                             <Col>
                                                                 <Button className="mx-1" variant="warning" onClick={() => this.props.onEdit(payment)}>Edit</Button>
-                                                            
+
                                                                 <Button className="mx-1" variant="danger" onClick={() => this.props.onDelete(payment)}>Delete</Button>
                                                             </Col>
                                                         </>
                                                         :
                                                         null}
-                                                    {payment.paymentStatus == 1 || !this.props.payable ? null :
+                                                    {payment.paymentStatus === 1 || !this.props.payable ? null :
 
                                                         <Button onClick={() => this.props.onPay(payment)}>Pay</Button>
                                                     }
